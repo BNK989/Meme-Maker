@@ -211,6 +211,14 @@ function onAddText() {
   newText.writeText()
   newText.makeRectAround()
   gTexts.push(newText)
+  gCurrTextIdx = gTexts.length - 1
+  console.log(gCurrTextIdx)
+}
+
+function onRemoveText(){
+  if (gTexts.length === 1) return
+  gTexts.splice(gCurrTextIdx,1)
+  _resetCanvas()
 }
 
 // ===== local functions ====== //
