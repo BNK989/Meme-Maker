@@ -147,20 +147,6 @@ let mouseMove = (e) => {
   }//)
 }
 
-function onTextSelect(idx) {
-  const elTextInput = document.getElementById('text-field')
-  elTextInput.value = gTexts[idx].str
-}
-
-function onTextInputChange(el) {
-  const canvasText = gTexts[gCurrTextIdx]
-  if (!el.value || !canvasText) return
-  canvasText.str = el.value
-  _resetCanvas()
-  canvasText.writeText()
-  canvasText.makeRectAround()
-}
-
 const onDown = (e) => {
   const pos = getEventPos(e)
   gGrabOffset.x = pos.x - gTexts[gCurrTextIdx].pos.x
@@ -206,19 +192,47 @@ function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }
 
+function onTextSelect(idx) {
+  const elTextInput = document.getElementById('text-field')
+  elTextInput.value = gTexts[idx].str
+}
+
+function onTextInputChange(el) {
+  const canvasText = gTexts[gCurrTextIdx]
+  if (!el.value || !canvasText) return
+  canvasText.str = el.value
+  _resetCanvas()
+  canvasText.writeText()
+  canvasText.makeRectAround()
+}
+
 function onAddText() {
-  const newText = new Text('test')
+  const newText = new Text('CLICK TO EDIT')
   newText.writeText()
   newText.makeRectAround()
   gTexts.push(newText)
   gCurrTextIdx = gTexts.length - 1
-  console.log(gCurrTextIdx)
+  onTextSelect(gCurrTextIdx)
 }
 
 function onRemoveText(){
   if (gTexts.length === 1) return
   gTexts.splice(gCurrTextIdx,1)
   _resetCanvas()
+  document.getElementById('text-field').value = ''
+}
+
+function onSwitchText(){
+  const len = gTexts.length
+  if (len === 1) return
+  if (gCurrTextIdx < len - 1){
+    gCurrTextIdx++
+  } else {
+    gCurrTextIdx = 0
+  }
+  _resetCanvas()
+  gTexts[gCurrTextIdx].makeRectAround()
+  onTextSelect(gCurrTextIdx)
 }
 
 // ===== local functions ====== //
