@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="scripts/services/storage.service.js"></script>
+    <script defer src="scripts/services/canvas-edits.service.js"></script>
+    <script defer src="scripts/controller.js"></script>
+    <title>MEME MAKER</title>
+  </head>
+
+  <body class="body">
+    <header class="main-header flex">
+      <h1>Meme Maker</h1>
+      <nav class="hamburger-nav"></nav>
+    </header>
+
+    <main class="main-body">
+      <div class="canvas-container">
+        <canvas id="main-canvas"></canvas>
+        <div class="form-container">
+          <form action="">
+            <input name="text-field" id="text-field" type="text" oninput="onTextInputChange(this)" />
+            <input type="button" value="+">
+
+            <label for="">Choose an Image</label>
+            <div class="img-selector">
+              <ul class="img-selector flex">
+                <li>
+                  <label for="input-file" id="drop-area">
+                    <input onchange="onImgInput(event)" name="image-upload" type="file" accept="image/*" />
+                    <div id="image-view">
+                        <img src="Media/icon.png" alt="">
+                    </div>
+                </label></li>
+                <li></li><img class="default-img" onclick="setImage(this)" src="/Media/FLAGS.png" alt="" /></li>
+                <li></li><img onclick="setImage(this)" src="/Media/testImg.jpg" alt="" /></li>
+                <li></li><img onclick="setImage(this)" src="/Media/win.jpeg" alt="" /></li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+      <nav class="side-nav flex center"></nav>
+    </main>
+
+    <footer class="main-footer flex center">
+      <h4 class="credit">© Made by BNK</h4>
+    </footer>
+  </body>
+</html>
