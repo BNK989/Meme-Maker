@@ -28,6 +28,8 @@ window.onload = function () {
 }
 
 function addListeners() {
+  gCanvas.ontouchstart = onDown
+
   gCanvas.onmousemove = mouseMove
   gCanvas.ontouchmove = mouseMove
 
@@ -56,6 +58,7 @@ function setImage(elImg) {
   gCanvas.height = gCanvas.width / aspectRatio
 
   gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height)
+  gTexts.forEach(text => text.writeText())
 }
 
 class Text {
@@ -123,12 +126,11 @@ let mouseMove = (e) => {
       gExpandArea = 10
       if (isMouseOnCircle(pos.x, pos.y, text)) {
         gCanvas.style.cursor = 'nwse-resize'
-        if (gIsClicking) onResize(e, text)
+        if (gIsClicking) onResize(pos, text)
         return
     }
       if (gIsClicking || isEventTouch(e.type)) {
-        console.log(130)
-        move(e, text)
+        move(pos, text)
         onTextSelect(idx)
       }
     } else {
@@ -154,20 +156,20 @@ function onTextInputChange(el) {
   canvasText.makeRectAround()
 }
 
-let onDown = (e) => {
-  console.log(158)
-  gGrabOffset.x = e.offsetX - gTexts[gCurrTextIdx].pos.x
-  gGrabOffset.y = e.offsetY - gTexts[gCurrTextIdx].pos.y
+const onDown = (e) => {
+  const pos = getEventPos(e)
+  gGrabOffset.x = pos.x - gTexts[gCurrTextIdx].pos.x
+  gGrabOffset.y = pos.y - gTexts[gCurrTextIdx].pos.y
 
   e.preventDefault()
   gIsClicking = true
 }
 
-function move(e, text) {
+function move({x, y}, text) {
   gCanvas.style.cursor = 'grabbing'
   _resetCanvas()
-  text.pos.x = e.offsetX - gGrabOffset.x
-  text.pos.y = e.offsetY - gGrabOffset.y
+  text.pos.x = x - gGrabOffset.x
+  text.pos.y = y - gGrabOffset.y
   text.writeText()
   text.makeRectAround()
 }
@@ -176,16 +178,15 @@ let onUp = (e) => {
   e.preventDefault()
   gIsClicking = false
   gExpandArea = 3
-  console.log(5)
 }
 
-function onResize(e, text) {
-  if (gGrabOffset.prevX > e.offsetX) {
+function onResize({x}, text) {
+  if (gGrabOffset.prevX > x) {
     text.fontSize -= 0.1
   } else {
     text.fontSize += 0.1
   }
-  gGrabOffset.prevX = e.offsetX
+  gGrabOffset.prevX = x
   _resetCanvas()
   text.writeText()
   text.makeRectAround()
