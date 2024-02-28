@@ -22,7 +22,9 @@
         <div class="form-container">
           <form action="">
             <input name="text-field" id="text-field" type="text" oninput="onTextInputChange(this)" />
-            <input type="button" value="+">
+            <input type="button" onclick="onAddText()" value="+">
+            <input type="button" onclick="onRemoveText()" value="-">
+            <input type="button" onclick="onSwitchText()" value="⇄">
 
             <label for="">Choose an Image</label>
             <div class="img-selector">

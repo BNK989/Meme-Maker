@@ -5,10 +5,10 @@ let gCanvas
 let gCtx
 const gTexts = []
 let gIsClicking = false
-let gCurrTextIdx = 0
+let gCurrTextIdx = NaN
 const gGrabOffset = { x: 0, y: 0 }
 let gExpandArea = 3
-const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+//const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 let gCurrImg
 
@@ -58,18 +58,18 @@ function setImage(elImg) {
   gCanvas.height = gCanvas.width / aspectRatio
 
   gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height)
-  gTexts.forEach(text => text.writeText())
+  gTexts.forEach((text) => text.writeText())
 }
 
 class Text {
   #ctx
-  constructor(str = 'MY NAME IS BEN', x = 20, y = 60, fontSize = 30) {
+  constructor(str, x = 20, y = 60, fontSize = 30, fontFam = 'Impact') {
     this.#ctx = gCtx
     this.str = str
     this.pos = { x: x, y: y }
     this.rectPos = { x: this.x - 10, y: this.y - this.fontSize }
     this.fontSize = fontSize
-    this.#ctx.font = `${this.fontSize}px Arial`
+    this.#ctx.font = `${this.fontSize}px ${this.fontFam}`
     this.width = this.#ctx.measureText(this.str).width + 20
     this.height = this.fontSize * 1.2
     this.reSizeDot = { x: this.width * 1.03, y: this.fontSize * 2.2 }
@@ -77,10 +77,14 @@ class Text {
   }
 
   writeText() {
-    this.#ctx.font = `${this.fontSize}px Arial`
+    this.#ctx.font = `${this.fontSize}px Impact`
+    this.#ctx.fillStyle = 'white'
+    this.#ctx.lineWidth = 5
+    this.#ctx.strokeText(this.str, this.pos.x, this.pos.y)
     this.#ctx.fillText(this.str, this.pos.x, this.pos.y)
     this.height = this.fontSize * 1.2
     this.width = this.#ctx.measureText(this.str).width + 20
+    this.#ctx.lineWidth = 1
   }
 
   makeRectAround() {
@@ -113,33 +117,34 @@ class Text {
   }
 }
 
-
 let mouseMove = (e) => {
   e.preventDefault()
   const pos = getEventPos(e)
-  gTexts.forEach((text, idx) => {
-    if (isMouseOnRect(pos.x, pos.y, text)) {
+  //gTexts.find((text, idx) => {
+    for (let idx = 0; idx < gTexts.length; idx++) {
+    if (isMouseOnRect(pos.x, pos.y, gTexts[idx])) {
       gCanvas.onmousedown = onDown
       gCurrTextIdx = idx
       gCanvas.style.cursor = 'grab'
-      text.makeRectAround()
+      gTexts[idx].makeRectAround()
       gExpandArea = 10
-      if (isMouseOnCircle(pos.x, pos.y, text)) {
+      if (isMouseOnCircle(pos.x, pos.y, gTexts[idx])) {
         gCanvas.style.cursor = 'nwse-resize'
-        if (gIsClicking) onResize(pos, text)
+        if (gIsClicking) onResize(pos, gTexts[idx])
         return
-    }
+      }
       if (gIsClicking || isEventTouch(e.type)) {
-        move(pos, text)
+        move(pos, gTexts[idx])
         onTextSelect(idx)
       }
-    } else {
+      return
+    } else if (idx === 1) {
       _resetCanvas()
-      text.writeText()
+      gTexts[idx].writeText()
       gCanvas.style.cursor = 'initial'
       gCanvas.onmousedown = null
     }
-  })
+  }//)
 }
 
 function onTextSelect(idx) {
@@ -148,8 +153,8 @@ function onTextSelect(idx) {
 }
 
 function onTextInputChange(el) {
-  if (!el.value) return
   const canvasText = gTexts[gCurrTextIdx]
+  if (!el.value || !canvasText) return
   canvasText.str = el.value
   _resetCanvas()
   canvasText.writeText()
@@ -165,7 +170,7 @@ const onDown = (e) => {
   gIsClicking = true
 }
 
-function move({x, y}, text) {
+function move({ x, y }, text) {
   gCanvas.style.cursor = 'grabbing'
   _resetCanvas()
   text.pos.x = x - gGrabOffset.x
@@ -180,7 +185,7 @@ let onUp = (e) => {
   gExpandArea = 3
 }
 
-function onResize({x}, text) {
+function onResize({ x }, text) {
   if (gGrabOffset.prevX > x) {
     text.fontSize -= 0.1
   } else {
@@ -201,7 +206,12 @@ function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }
 
-
+function onAddText() {
+  const newText = new Text('test')
+  newText.writeText()
+  newText.makeRectAround()
+  gTexts.push(newText)
+}
 
 // ===== local functions ====== //
 function _resetCanvas() {
