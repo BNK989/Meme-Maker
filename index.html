@@ -20,28 +20,51 @@
       <div class="canvas-container">
         <canvas id="main-canvas"></canvas>
         <div class="form-container">
-          <form action="">
-            <input name="text-field" id="text-field" type="text" oninput="onTextInputChange(this)" />
-            <input type="button" onclick="onAddText()" value="+">
-            <input type="button" onclick="onRemoveText()" value="-">
-            <input type="button" onclick="onSwitchText()" value="⇄">
+          <input
+            name="text-field"
+            id="text-field"
+            type="text"
+            oninput="onTextInputChange(this)"
+          />
+          <input type="button" onclick="onAddText()" value="+" />
+          <input type="button" onclick="onRemoveText()" value="-" />
+          <input type="button" onclick="onSwitchText()" value="⇄" />
 
-            <label for="">Choose an Image</label>
-            <div class="img-selector">
-              <ul class="img-selector flex">
-                <li>
-                  <label for="input-file" id="drop-area">
-                    <input onchange="onImgInput(event)" name="image-upload" type="file" accept="image/*" />
-                    <div id="image-view">
-                        <img src="Media/icon.png" alt="">
-                    </div>
-                </label></li>
-                <li></li><img class="default-img" onclick="setImage(this)" src="/Media/FLAGS.png" alt="" /></li>
-                <li></li><img onclick="setImage(this)" src="/Media/testImg.jpg" alt="" /></li>
-                <li></li><img onclick="setImage(this)" src="/Media/win.jpeg" alt="" /></li>
-              </ul>
-            </div>
-          </form>
+          <div class="img-selector">
+            <ul class="img-selector flex">
+              <li>
+                <img
+                  class="default-img"
+                  onclick="setImage(this)"
+                  src="/Media/FLAGS.png"
+                  alt=""
+                />
+              </li>
+              <li>
+                <img onclick="setImage(this)" src="/Media/testImg.jpg" alt="" />
+              </li>
+              <li>
+                <img
+                  onclick="setImage(this)"
+                  src="/Media/Square/1.jpg"
+                  alt=""
+                />
+              </li>
+            </ul>
+          </div>
+          <div>
+            <label for="input-file" id="drop-area">
+              <input
+                onchange="onImgInput(event)"
+                name="image-upload"
+                type="file"
+                accept="image/*"
+              />
+              <div id="image-view">
+                <img src="Media/icon.png" alt="" />
+              </div>
+            </label>
+          </div>
         </div>
       </div>
       <nav class="side-nav flex center"></nav>

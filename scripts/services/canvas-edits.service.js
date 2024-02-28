@@ -1,12 +1,43 @@
 'use strict'
 
-var gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] }]
+const gImgs = [
+  { id: 1, url: '1.jpg', keywords: ['trump', 'politics'] },
+  { id: 2, url: '2.jpg', keywords: ['cute', 'puppies', 'dog', 'pet'] },
+  { id: 3, url: '3.jpg', keywords: ['cute', 'puppies', 'dog', 'pet', 'baby'] },
+  { id: 4, url: '4.jpg', keywords: ['cute', 'cat', 'kittens', 'pet'] },
+  { id: 5, url: '5.jpg', keywords: ['cute', 'baby', 'kid', 'child'] },
+  { id: 6, url: '6.jpg', keywords: ['funny', 'men', 'explain', 'joke'] },
+  { id: 7, url: '7.jpg', keywords: ['cute', 'baby', 'kid', 'child'] },
+  { id: 8, url: '8.jpg', keywords: ['explain', 'men', 'funny', 'classic'] },
+  { id: 9, url: '9.jpg', keywords: ['cute', 'baby', 'kid', 'child'] },
+  { id: 10, url: '10.jpg', keywords: ['obama', 'politics', 'funny', 'face'] },
+  { id: 11, url: '11.jpg', keywords: ['gay', 'men', 'kiss', 'sport', 'funny'] },
+  { id: 12, url: '12.jpg', keywords: ['explain', 'men', 'you', 'tv'] },
+  { id: 13, url: '13.jpg', keywords: ['men', 'celeb', 'you'] },
+  { id: 14, url: '14.jpg', keywords: ['matrix', 'pill', 'glasses', 'neo', 'men'] },
+  { id: 15, url: '15.jpg', keywords: ['got', 'tv', 'okay', 'men'] },
+  { id: 16, url: '16.jpg', keywords: ['tv', 'space', 'classic', 'men'] },
+  { id: 17, url: '17.jpg', keywords: ['asshole', 'men', 'russia', 'politics'] },
+  { id: 18, url: '18.jpg', keywords: ['buzz', 'toy', 'explain', 'classic'] },
+
+]
 var gMeme = {
   selectedImgId: 5,
   selectedLineIdx: 0,
   lines: [{ txt: 'I sometimes eat Falafel', size: 20, color: 'red' }],
 }
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
+
+function loadImages() {
+  let htmlStr = ''
+  //let htmlStr = '<li><label for="input-file" id="drop-area"><input onchange="onImgInput(event)" name="image-upload" type="file" accept="image/*" /><div id="image-view"><img src="Media/icon.png" alt=""></div></label></li>'
+  gImgs.forEach((img) => {
+    htmlStr += `<li><img onclick="setImage(this)" src="Media/Square/${img.url}" alt="${img.keywords.join('-')}" /></li>`
+  })
+  return htmlStr
+}
+
+//<li><img onclick="setImage(this)" src="/Media/win.jpeg" alt="" /></li>
 
 class Text {
   #ctx
@@ -120,6 +151,6 @@ function getEventPos(e) {
   return pos
 }
 
-function isEventTouch(type){
+function isEventTouch(type) {
   return ['touchstart', 'touchmove', 'touchend'].includes(type)
 }

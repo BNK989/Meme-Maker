@@ -18,13 +18,13 @@ window.onload = function () {
   gCanvas.width = window.innerWidth / 2
   gCanvas.height = window.innerHeight - 160
 
-  setImage(document.querySelector('.default-img'))
   const temp = new Text('CREATE YOUR OWN MEME', 20, 60, 30)
   gTexts.push(temp)
   temp.writeText()
   temp.makeRectAround()
 
   addListeners()
+  addImages()
 }
 
 function addListeners() {
@@ -36,20 +36,28 @@ function addListeners() {
   gCanvas.onmouseup = onUp
   gCanvas.ontouchend = onUp
   const dropArea = document.getElementById('drop-area')
-
+  
   dropArea.addEventListener('dragover', function (e) {
     e.preventDefault()
   })
-
+  
   dropArea.addEventListener('drop', function (e) {
     e.preventDefault()
     loadImageFromInput(e)
   })
-
+  
   window.addEventListener('resize', function () {
     gCanvas.width = window.innerWidth / 2
     gCanvas.height = window.innerHeight - 160
   })
+}
+
+function addImages(){
+  const imgHTML = loadImages()
+  const elUl = document.querySelector('ul.img-selector')
+  elUl.innerHTML = imgHTML
+  const firstImg = document.querySelectorAll('ul.img-selector img')[1]
+  firstImg.onload = () => setImage(firstImg)
 }
 
 function setImage(elImg) {
@@ -131,8 +139,8 @@ function onImgInput(e) {
 }
 
 function renderImg(img) {
-  gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
-  gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+  gCurrImg = img
+  _resetCanvas()
 }
 
 function onTextSelect(idx) {
