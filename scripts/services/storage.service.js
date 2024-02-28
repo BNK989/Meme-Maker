@@ -1,7 +1,8 @@
-'use strict';
+'use strict'
+const KEY = 'savedMemesDB'
 
-function saveMemesToStorage() {
-    saveToStorage('savedMemesDB', gSavedMemes);
+function saveMemesToStorage(content) {
+    saveToStorage(KEY, content)
 }
 
 function saveToStorage(key, val) {

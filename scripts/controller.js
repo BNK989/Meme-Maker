@@ -89,7 +89,7 @@ const mouseMove = (e) => {
         onTextSelect(idx)
       }
       return
-    } else if (idx === 1) {
+    } else if (idx === gTexts.length - 1) {
       _resetCanvas()
       gTexts[idx].writeText()
       gCanvas.style.cursor = 'initial'
@@ -116,7 +116,7 @@ function move({ x, y }, text) {
   text.makeRectAround()
 }
 
-let onUp = (e) => {
+const onUp = (e) => {
   e.preventDefault()
   gIsClicking = false
   gExpandArea = 3
@@ -184,6 +184,25 @@ function onSwitchText(){
   _resetCanvas()
   gTexts[gCurrTextIdx].makeRectAround()
   onTextSelect(gCurrTextIdx)
+}
+
+function onDownloadImg(elLink) {
+  const imgContent = gCanvas.toDataURL('image/jpeg')
+  elLink.href = imgContent
+}
+
+function onSave(){
+  const memeObjToSave = {
+    img: JSON.stringify(gCurrImg),
+    text: gTexts
+  }
+  console.log(memeObjToSave.img)
+  saveMemesToStorage(memeObjToSave)
+}
+
+function onLoadSavedMeme(){
+  const memeFromMemory = loadFromStorage(KEY)
+  console.log(memeFromMemory)
 }
 
 // ===== local functions ====== //

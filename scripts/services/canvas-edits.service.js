@@ -57,7 +57,7 @@ class Text {
   writeText() {
     this.#ctx.font = `${this.fontSize}px Impact`
     this.#ctx.fillStyle = 'white'
-    this.#ctx.lineWidth = 5
+    this.#ctx.lineWidth = 3
     this.#ctx.strokeText(this.str, this.pos.x, this.pos.y)
     this.#ctx.fillText(this.str, this.pos.x, this.pos.y)
     this.height = this.fontSize * 1.2

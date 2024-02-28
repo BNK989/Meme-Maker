@@ -32,27 +32,9 @@
 
           <div class="img-selector">
             <ul class="img-selector flex">
-              <li>
-                <img
-                  class="default-img"
-                  onclick="setImage(this)"
-                  src="/Media/FLAGS.png"
-                  alt=""
-                />
-              </li>
-              <li>
-                <img onclick="setImage(this)" src="/Media/testImg.jpg" alt="" />
-              </li>
-              <li>
-                <img
-                  onclick="setImage(this)"
-                  src="/Media/Square/1.jpg"
-                  alt=""
-                />
-              </li>
             </ul>
           </div>
-          <div>
+          <div class="user-img-upload">
             <label for="input-file" id="drop-area">
               <input
                 onchange="onImgInput(event)"
@@ -61,9 +43,14 @@
                 accept="image/*"
               />
               <div id="image-view">
-                <img src="Media/icon.png" alt="" />
+                <!-- <img src="Media/icon.png" alt="" /> -->
               </div>
             </label>
+          </div>
+          <div class="action-btns">
+            <a onclick="onDownloadImg(this)" class="btn" href="#" class="download" download="My MEME">Download</a>
+            <a onclick="onSave()" class="btn" href="#" class="download">Save</a>
+            <a onclick="onLoadSavedMeme()" class="btn" href="#" class="download">Load</a>
           </div>
         </div>
       </div>
