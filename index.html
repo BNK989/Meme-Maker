@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="Media/favicon.ico" type="image/x-icon">
     <script defer src="scripts/services/storage.service.js"></script>
     <script defer src="scripts/services/canvas-edits.service.js"></script>
     <script defer src="scripts/controller.js"></script>
@@ -13,8 +14,37 @@
   <body class="body">
     <header class="main-header flex">
       <h1>Meme Maker</h1>
-      <nav class="hamburger-nav"></nav>
+      <nav class="hamburger-nav">
+        <ul>
+          <li>Image Gallery</li>
+          <li>Editor</li>
+          <li>About</li>
+        </ul>
+      </nav>
     </header>
+
+    <section class="gallery-overlay">
+      <nav class="gallery-search">
+        <div class="searchbar">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search"
+            oninput="console.log('function')"
+            onclick="this.select()"
+          />
+        </div>
+        <div class="wordclouds">
+          <div class="words">
+            <a href="#">Temp</a>
+            <a href="#">Temp</a>
+            <a href="#">Temp</a>
+            <a href="#">Temp</a>
+            <a href="#">Temp</a>
+          </div>
+        </div>
+      </nav>
+    </section>
 
     <main class="main-body">
       <div class="canvas-container">
@@ -31,8 +61,7 @@
           <input type="button" onclick="onSwitchText()" value="⇄" />
 
           <div class="img-selector">
-            <ul class="img-selector flex">
-            </ul>
+            <ul class="img-selector flex"></ul>
           </div>
           <div class="user-img-upload">
             <label for="input-file" id="drop-area">
@@ -48,9 +77,18 @@
             </label>
           </div>
           <div class="action-btns">
-            <a onclick="onDownloadImg(this)" class="btn" href="#" class="download" download="My MEME">Download</a>
+            <a
+              onclick="onDownloadImg(this)"
+              class="btn"
+              href="#"
+              class="download"
+              download="My MEME"
+              >Download</a
+            >
             <a onclick="onSave()" class="btn" href="#" class="download">Save</a>
-            <a onclick="onLoadSavedMeme()" class="btn" href="#" class="download">Load</a>
+            <a onclick="onLoadSavedMeme()" class="btn" href="#" class="download"
+              >Load</a
+            >
           </div>
         </div>
       </div>
