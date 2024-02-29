@@ -29,8 +29,7 @@ var gMeme = {
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
 function loadImages() {
-  let htmlStr = ''
-  //let htmlStr = '<li><label for="input-file" id="drop-area"><input onchange="onImgInput(event)" name="image-upload" type="file" accept="image/*" /><div id="image-view"><img src="Media/icon.png" alt=""></div></label></li>'
+  let htmlStr = '<li><div id="drop-area" class="drop-area"><img id="uploaded-image"> <span>ADD IMAGE</span></div></li>'
   gImgs.forEach((img) => {
     htmlStr += `<li><img onclick="setImage(this)" src="Media/Square/${img.url}" alt="${img.keywords.join('-')}" /></li>`
   })

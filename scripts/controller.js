@@ -35,20 +35,60 @@ function addListeners() {
 
   gCanvas.onmouseup = onUp
   gCanvas.ontouchend = onUp
-  const dropArea = document.getElementById('drop-area')
-  
-  dropArea.addEventListener('dragover', function (e) {
-    e.preventDefault()
-  })
-  
-  dropArea.addEventListener('drop', function (e) {
-    e.preventDefault()
-    loadImageFromInput(e)
-  })
   
   window.addEventListener('resize', function () {
     gCanvas.width = window.innerWidth / 2
     gCanvas.height = window.innerHeight - 160
+  })
+  setTimeout(addDragAndDrop,99)
+  //addDragAndDrop()
+}
+
+function addDragAndDrop(){
+  const dropArea = document.getElementById('drop-area')
+  const uploadedImage = document.getElementById('uploaded-image')
+
+  dropArea.addEventListener('dragover', (e) => {
+    e.preventDefault()
+    dropArea.classList.add('active')
+  })
+
+  dropArea.addEventListener('dragleave', () => {
+    dropArea.classList.remove('active')
+  })
+
+  dropArea.addEventListener('drop', (e) => {
+    e.preventDefault()
+    const file = e.dataTransfer.files[0]
+    const reader = new FileReader()
+
+    reader.onload = () => {
+      uploadedImage.src = reader.result;
+      uploadedImage.style.display = 'block'
+    }
+    uploadedImage.onload = () => setImage(uploadedImage)
+
+    reader.readAsDataURL(file)
+    dropArea.classList.remove('active')
+  })
+
+  dropArea.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file'
+    input.accept = 'image/*'
+    input.onchange = (e) => {
+      const file = e.target.files[0]
+      const reader = new FileReader()
+
+      reader.onload = () => {
+        uploadedImage.src = reader.result
+        uploadedImage.style.display = 'block'
+      }
+      uploadedImage.onload = () => setImage(uploadedImage)
+      
+      reader.readAsDataURL(file)
+    }
+    input.click()
   })
 }
 
