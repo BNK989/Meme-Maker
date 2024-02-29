@@ -12,13 +12,13 @@
   </head>
 
   <body class="body">
-    <header class="main-header flex">
+    <header class="main-header flex full">
       <h1>Meme Maker</h1>
       <nav class="hamburger-nav">
-        <ul>
-          <li>Image Gallery</li>
-          <li>Editor</li>
-          <li>About</li>
+        <ul class="flex">
+          <li><a href="#" onclick="toggleGallery()">Image Gallery</a></li>
+          <li><a href="#" onclick="toggleGallery()">Editor</a></li>
+          <li><a href="#">About</a></li>
         </ul>
       </nav>
     </header>
@@ -41,12 +41,35 @@
             <a href="#">Temp</a>
             <a href="#">Temp</a>
             <a href="#">Temp</a>
+            <a href="#">Temp</a>
           </div>
         </div>
       </nav>
+
+      <div class="gallery">
+        <ul class="flex">
+          <li><img onclick="setImage(this)" src="Media/Square/1.jpg" alt="trump-politics"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/2.jpg" alt="cute-puppies-dog-pet"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/3.jpg" alt="cute-puppies-dog-pet-baby"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/4.jpg" alt="cute-cat-kittens-pet"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/5.jpg" alt="cute-baby-kid-child"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/6.jpg" alt="funny-men-explain-joke"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/7.jpg" alt="cute-baby-kid-child"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/8.jpg" alt="explain-men-funny-classic"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/9.jpg" alt="cute-baby-kid-child"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/10.jpg" alt="obama-politics-funny-face"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/11.jpg" alt="gay-men-kiss-sport-funny"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/12.jpg" alt="explain-men-you-tv"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/13.jpg" alt="men-celeb-you"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/14.jpg" alt="matrix-pill-glasses-neo-men"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/15.jpg" alt="got-tv-okay-men"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/16.jpg" alt="tv-space-classic-men"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/17.jpg" alt="asshole-men-russia-politics"></li>
+          <li><img onclick="setImage(this)" src="Media/Square/18.jpg" alt="buzz-toy-explain-classic"></li></ul>
+      </div>
     </section>
 
-    <main class="main-body">
+    <main class="main-body hide">
       <div class="canvas-container">
         <canvas id="main-canvas"></canvas>
         <div class="form-container">
@@ -63,19 +86,7 @@
           <div class="img-selector">
             <ul class="img-selector flex"></ul>
           </div>
-          <div class="user-img-upload">
-            <label for="input-file" id="drop-area">
-              <input
-                onchange="onImgInput(event)"
-                name="image-upload"
-                type="file"
-                accept="image/*"
-              />
-              <div id="image-view">
-                <!-- <img src="Media/icon.png" alt="" /> -->
-              </div>
-            </label>
-          </div>
+
           <div class="action-btns">
             <a
               onclick="onDownloadImg(this)"
@@ -95,7 +106,7 @@
       <nav class="side-nav flex center"></nav>
     </main>
 
-    <footer class="main-footer flex center">
+    <footer class="main-footer flex center full">
       <h4 class="credit">© Made by BNK</h4>
     </footer>
   </body>

@@ -35,16 +35,15 @@ function addListeners() {
 
   gCanvas.onmouseup = onUp
   gCanvas.ontouchend = onUp
-  
+
   window.addEventListener('resize', function () {
-    gCanvas.width = window.innerWidth / 2
-    gCanvas.height = window.innerHeight - 160
+    gCanvas.width = window.innerWidth / 2.2
+    gCanvas.height = window.innerHeight - 200
   })
-  setTimeout(addDragAndDrop,99)
-  //addDragAndDrop()
+  setTimeout(addDragAndDrop, 99)
 }
 
-function addDragAndDrop(){
+function addDragAndDrop() {
   const dropArea = document.getElementById('drop-area')
   const uploadedImage = document.getElementById('uploaded-image')
 
@@ -63,7 +62,7 @@ function addDragAndDrop(){
     const reader = new FileReader()
 
     reader.onload = () => {
-      uploadedImage.src = reader.result;
+      uploadedImage.src = reader.result
       uploadedImage.style.display = 'block'
     }
     uploadedImage.onload = () => setImage(uploadedImage)
@@ -73,7 +72,7 @@ function addDragAndDrop(){
   })
 
   dropArea.addEventListener('click', () => {
-    const input = document.createElement('input');
+    const input = document.createElement('input')
     input.type = 'file'
     input.accept = 'image/*'
     input.onchange = (e) => {
@@ -85,14 +84,14 @@ function addDragAndDrop(){
         uploadedImage.style.display = 'block'
       }
       uploadedImage.onload = () => setImage(uploadedImage)
-      
+
       reader.readAsDataURL(file)
     }
     input.click()
   })
 }
 
-function addImages(){
+function addImages() {
   const imgHTML = loadImages()
   const elUl = document.querySelector('ul.img-selector')
   elUl.innerHTML = imgHTML
@@ -103,16 +102,18 @@ function addImages(){
 function setImage(elImg) {
   gCurrImg = elImg
   const aspectRatio = gCurrImg.width / gCurrImg.height
-  gCanvas.height = gCanvas.width / aspectRatio
+  gCanvas.width = window.innerWidth / 2.8
+  gCanvas.height = gCanvas.width  / aspectRatio
+  
 
-  gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height)
+  gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width , gCanvas.height  )
   gTexts.forEach((text) => text.writeText())
 }
 
 const mouseMove = (e) => {
   e.preventDefault()
   const pos = getEventPos(e)
-    for (let idx = 0; idx < gTexts.length; idx++) {
+  for (let idx = 0; idx < gTexts.length; idx++) {
     if (isMouseOnRect(pos.x, pos.y, gTexts[idx])) {
       gCanvas.onmousedown = onDown
       gCurrTextIdx = idx
@@ -206,17 +207,17 @@ function onAddText() {
   onTextSelect(gCurrTextIdx)
 }
 
-function onRemoveText(){
+function onRemoveText() {
   if (gTexts.length === 1) return
-  gTexts.splice(gCurrTextIdx,1)
+  gTexts.splice(gCurrTextIdx, 1)
   _resetCanvas()
   document.getElementById('text-field').value = ''
 }
 
-function onSwitchText(){
+function onSwitchText() {
   const len = gTexts.length
   if (len === 1) return
-  if (gCurrTextIdx < len - 1){
+  if (gCurrTextIdx < len - 1) {
     gCurrTextIdx++
   } else {
     gCurrTextIdx = 0
@@ -231,16 +232,16 @@ function onDownloadImg(elLink) {
   elLink.href = imgContent
 }
 
-function onSave(){
+function onSave() {
   const memeObjToSave = {
     img: JSON.stringify(gCurrImg),
-    text: gTexts
+    text: gTexts,
   }
   console.log(memeObjToSave.img)
   saveMemesToStorage(memeObjToSave)
 }
 
-function onLoadSavedMeme(){
+function onLoadSavedMeme() {
   const memeFromMemory = loadFromStorage(KEY)
   console.log(memeFromMemory)
 }
@@ -249,4 +250,17 @@ function onLoadSavedMeme(){
 function _resetCanvas() {
   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
   if (gCurrImg) setImage(gCurrImg)
+}
+
+function toggleGallery() {
+  const elGallery = document.querySelector('section.gallery-overlay').classList
+  const elCanvas = document.querySelector('main.main-body').classList
+  console.log(elGallery.contains('hide'))
+  if (!elGallery.contains('hide')) {
+    elGallery.add('hide')
+    elCanvas.remove('hide')
+  } else {
+    elGallery.remove('hide')
+    elCanvas.add('hide')
+  }
 }
