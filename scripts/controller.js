@@ -5,7 +5,7 @@ let gCanvas
 let gCtx
 const gTexts = []
 let gIsClicking = false
-let gCurrTextIdx = NaN
+let gCurrTextIdx = 0
 const gGrabOffset = { x: 0, y: 0 }
 let gExpandArea = 3
 //const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
@@ -103,10 +103,9 @@ function setImage(elImg) {
   gCurrImg = elImg
   const aspectRatio = gCurrImg.width / gCurrImg.height
   gCanvas.width = window.innerWidth / 2.8
-  gCanvas.height = gCanvas.width  / aspectRatio
-  
+  gCanvas.height = gCanvas.width / aspectRatio
 
-  gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width , gCanvas.height  )
+  gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height)
   gTexts.forEach((text) => text.writeText())
 }
 
@@ -131,8 +130,9 @@ const mouseMove = (e) => {
       }
       return
     } else if (idx === gTexts.length - 1) {
-      _resetCanvas()
-      gTexts[idx].writeText()
+      RerenderCanvas(false)
+      // _resetCanvas()
+      // gTexts[idx].writeText()
       gCanvas.style.cursor = 'initial'
       gCanvas.onmousedown = null
     }
@@ -165,14 +165,39 @@ const onUp = (e) => {
 
 function onResize({ x }, text) {
   if (gGrabOffset.prevX > x) {
-    text.fontSize -= 0.1
+    fontResize(-0.1)
   } else {
-    text.fontSize += 0.1
+    fontResize(0.1)
   }
   gGrabOffset.prevX = x
+}
+
+function fontResize(val) {
+  gTexts[gCurrTextIdx].fontSize += val
+  RerenderCanvas(true)
+}
+
+function onSetFontFamily(fontFam) {
+  gTexts[gCurrTextIdx].fontFam = fontFam
+  RerenderCanvas(true)
+}
+
+function onSetTextColor(color) {
+  gTexts[gCurrTextIdx].fillStyle = color
+  RerenderCanvas(true)
+}
+
+function onSetStrokeColor(color) {
+  gTexts[gCurrTextIdx].strokeStyle = color
+  RerenderCanvas(true)
+}
+
+function RerenderCanvas(withRect = false) {
   _resetCanvas()
+  if (!gCurrTextIdx) return
+  const text = gTexts[gCurrTextIdx]
   text.writeText()
-  text.makeRectAround()
+  if (withRect) text.makeRectAround()
 }
 
 function onImgInput(e) {
@@ -193,9 +218,7 @@ function onTextInputChange(el) {
   const canvasText = gTexts[gCurrTextIdx]
   if (!el.value || !canvasText) return
   canvasText.str = el.value
-  _resetCanvas()
-  canvasText.writeText()
-  canvasText.makeRectAround()
+  RerenderCanvas(true)
 }
 
 function onAddText() {
@@ -222,8 +245,7 @@ function onSwitchText() {
   } else {
     gCurrTextIdx = 0
   }
-  _resetCanvas()
-  gTexts[gCurrTextIdx].makeRectAround()
+  RerenderCanvas(true)
   onTextSelect(gCurrTextIdx)
 }
 
@@ -255,7 +277,6 @@ function _resetCanvas() {
 function toggleGallery() {
   const elGallery = document.querySelector('section.gallery-overlay').classList
   const elCanvas = document.querySelector('main.main-body').classList
-  console.log(elGallery.contains('hide'))
   if (!elGallery.contains('hide')) {
     elGallery.add('hide')
     elCanvas.remove('hide')

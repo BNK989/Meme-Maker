@@ -82,6 +82,24 @@
           <input type="button" onclick="onAddText()" value="+" />
           <input type="button" onclick="onRemoveText()" value="-" />
           <input type="button" onclick="onSwitchText()" value="⇄" />
+          <input type="button" onclick="fontResize(1)" value="font+" />
+          <input type="button" onclick="fontResize(-1)" value="font-" />
+          <select class="select-font-family" onchange="onSetFontFamily(this.value)">
+            <option value="impact">Impact</option>
+            <option value="arial">Arial</option>
+            <option value="lucida sans">Lucida Sans</option>
+            <option value="verdana">Verdana</option>
+            <option value="times new roman">Times New Roman</option>
+            <option value="georgia">Georgia</option>
+          </select>
+          <button class="btn-control btn-font-stroke">
+            <i class="fas fa-palette fa-2x"></i>
+            <input type="color" oninput="onSetTextColor(this.value)">
+          </button>
+          <button class="btn-control btn-font-stroke">
+            <i class="fas fa-palette fa-2x"></i>
+            <input type="color" oninput="onSetStrokeColor(this.value)">
+          </button>
 
           <div class="img-selector">
             <ul class="img-selector flex"></ul>

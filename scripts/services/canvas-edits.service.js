@@ -42,11 +42,17 @@ class Text {
   #ctx
   constructor(str, x = 20, y = 60, fontSize = 30, fontFam = 'Impact') {
     this.#ctx = gCtx
+    this.#ctx.font = `${this.fontSize}px ${this.fontFam}`
+    this.#ctx.fillStyle = `${this.fillStyle}` 
+    this.#ctx.strokeStyle = `${this.strokeStyle}`
+
     this.str = str
     this.pos = { x: x, y: y }
     this.rectPos = { x: this.x - 10, y: this.y - this.fontSize }
     this.fontSize = fontSize
-    this.#ctx.font = `${this.fontSize}px ${this.fontFam}`
+    this.fontFam = fontFam
+    this.fillStyle = 'white'
+    this.strokeStyle = 'black'
     this.width = this.#ctx.measureText(this.str).width + 20
     this.height = this.fontSize * 1.2
     this.reSizeDot = { x: this.width * 1.03, y: this.fontSize * 2.2 }
@@ -54,8 +60,9 @@ class Text {
   }
 
   writeText() {
-    this.#ctx.font = `${this.fontSize}px Impact`
-    this.#ctx.fillStyle = 'white'
+    this.#ctx.font = `${this.fontSize}px ${this.fontFam}`
+    this.#ctx.fillStyle = `${this.fillStyle}` 
+    this.#ctx.strokeStyle = `${this.strokeStyle}`
     this.#ctx.lineWidth = 3
     this.#ctx.strokeText(this.str, this.pos.x, this.pos.y)
     this.#ctx.fillText(this.str, this.pos.x, this.pos.y)
