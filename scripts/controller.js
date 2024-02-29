@@ -27,6 +27,7 @@ window.onload = function () {
   loadImages()
   addImages()
   loadWordCloud()
+  resizeCanvas()
 }
 
 function addListeners() {
@@ -38,11 +39,28 @@ function addListeners() {
   gCanvas.onmouseup = onUp
   gCanvas.ontouchend = onUp
 
-  window.addEventListener('resize', function () {
+  window.addEventListener('resize', resizeCanvas)
+  setTimeout(addDragAndDrop, 99)
+}
+
+function resizeCanvas(ratio){
+  if(window.innerWidth < 701){//mobile
+    if(!ratio){
+    gCanvas.width = window.innerWidth / 1.2
+    gCanvas.height = window.innerHeight - 200
+    } else {
+    gCanvas.width = window.innerWidth / 1.2
+    gCanvas.height = gCanvas.width / ratio
+    }//desktop
+  } else {
+    if(!ratio){
     gCanvas.width = window.innerWidth / 2.2
     gCanvas.height = window.innerHeight - 200
-  })
-  setTimeout(addDragAndDrop, 99)
+  } else {
+    gCanvas.width = window.innerWidth / 2.8
+    gCanvas.height = gCanvas.width / ratio
+  }
+ }
 }
 
 function addDragAndDrop() {
@@ -94,20 +112,17 @@ function addDragAndDrop() {
 }
 
 function addImages() {
-
   const imgHTML = loadMiniGalImages()
   const elUl = document.querySelector('ul.img-selector')
   elUl.innerHTML = imgHTML
   const firstImg = document.querySelectorAll('ul.img-selector img')[1]
   firstImg.onload = () => setImage(firstImg)
-
 }
 
 function setImage(elImg) {
   gCurrImg = elImg
   const aspectRatio = gCurrImg.width / gCurrImg.height
-  gCanvas.width = window.innerWidth / 2.8
-  gCanvas.height = gCanvas.width / aspectRatio
+  resizeCanvas(aspectRatio)
 
   gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height)
   gTexts.forEach((text) => text.writeText())
@@ -288,4 +303,12 @@ function toggleGallery() {
     elGallery.remove('hide')
     elCanvas.add('hide')
   }
+}
+
+function scrollMiniGal() {
+  const el = document.querySelector('ul.img-selector')
+  el.scroll({
+    left: 100,
+    behavior: 'smooth',
+  })
 }

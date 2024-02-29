@@ -50,15 +50,18 @@
       <div class="canvas-container">
         <canvas id="main-canvas"></canvas>
         <div class="form-container">
-          <input
-            name="text-field"
-            id="text-field"
-            type="text"
-            oninput="onTextInputChange(this)"
-          />
-          <input type="button" onclick="onAddText()" value="+" />
-          <input type="button" onclick="onRemoveText()" value="-" />
-          <input type="button" onclick="onSwitchText()" value="⇄" />
+          <div class="text-edits">
+            <div class="add-switch-remove">
+            <input type="button" onclick="onAddText()" value="+" />
+            <input type="button" onclick="onRemoveText()" value="-" />
+            <input type="button" onclick="onSwitchText()" value="⇄" />
+          </div>
+            <input
+              name="text-field"
+              id="text-field"
+              type="text"
+              oninput="onTextInputChange(this)"
+            />
           <input type="button" onclick="fontResize(1)" value="font+" />
           <input type="button" onclick="fontResize(-1)" value="font-" />
           <select class="select-font-family" onchange="onSetFontFamily(this.value)">
@@ -69,20 +72,14 @@
             <option value="times new roman">Times New Roman</option>
             <option value="georgia">Georgia</option>
           </select>
-          <button class="btn-control btn-font-stroke">
-            <i class="fas fa-palette fa-2x"></i>
-            <input type="color" oninput="onSetTextColor(this.value)">
-          </button>
-          <button class="btn-control btn-font-stroke">
-            <i class="fas fa-palette fa-2x"></i>
-            <input type="color" oninput="onSetStrokeColor(this.value)">
-          </button>
-
+          <input type="color" oninput="onSetTextColor(this.value)">
+          <input type="color" oninput="onSetStrokeColor(this.value)">
+        </div>
           <div class="img-selector">
-            <ul class="img-selector flex"></ul>
+            <ul class="img-selector flex" ont="console.log('dragging')"></ul>
           </div>
 
-          <div class="action-btns">
+          <div class="action-btns flex">
             <a
               onclick="onDownloadImg(this)"
               class="btn"

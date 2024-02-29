@@ -26,3 +26,47 @@ function wordcloudClick(el) {
   el.classList.add('activeTerm')
   
 }
+
+
+// TEMP 
+let imageContainer = document.querySelector('ul.img-selector');
+let isDragging = false;
+let startPosition = 0;
+let scrollLeft = 0;
+
+imageContainer.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startPosition = e.clientX;
+  scrollLeft = imageContainer.scrollLeft;
+});
+
+imageContainer.addEventListener('mouseup', () => {
+  isDragging = false;
+});
+
+imageContainer.addEventListener('mouseleave', () => {
+  isDragging = false;
+});
+
+imageContainer.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const delta = e.clientX - startPosition;
+  imageContainer.scrollLeft = scrollLeft - delta;
+});
+
+// For touch devices
+imageContainer.addEventListener('touchstart', (e) => {
+  isDragging = true;
+  startPosition = e.touches[0].clientX;
+  scrollLeft = imageContainer.scrollLeft;
+});
+
+imageContainer.addEventListener('touchend', () => {
+  isDragging = false;
+});
+
+imageContainer.addEventListener('touchmove', (e) => {
+  if (!isDragging) return;
+  const delta = e.touches[0].clientX - startPosition;
+  imageContainer.scrollLeft = scrollLeft - delta;
+});

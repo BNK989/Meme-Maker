@@ -58,8 +58,7 @@ function createWordCloud() {
   const everyKeywordAbove = everyKeywordOnce.filter(
     (word) => frqOfWord[word] > 3
   )
-  console.log(everyKeywordAbove)
-
+  
   //creating HTML
   let htmlStr = ''
   everyKeywordAbove.forEach((keyword) => {
