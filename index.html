@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="Media/favicon.ico" type="image/x-icon">
     <script defer src="scripts/services/storage.service.js"></script>
     <script defer src="scripts/services/canvas-edits.service.js"></script>
+    <script defer src="scripts/services/gallery.service.js"></script>
+    <script defer src="scripts/gallery-controller.js"></script>
     <script defer src="scripts/controller.js"></script>
     <title>MEME MAKER</title>
   </head>
@@ -30,7 +32,7 @@
             type="text"
             class="search-input"
             placeholder="Search"
-            oninput="console.log('function')"
+            oninput="loadImages(this.value)"
             onclick="this.select()"
           />
         </div>
@@ -48,24 +50,6 @@
 
       <div class="gallery">
         <ul class="flex">
-          <li><img onclick="setImage(this)" src="Media/Square/1.jpg" alt="trump-politics"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/2.jpg" alt="cute-puppies-dog-pet"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/3.jpg" alt="cute-puppies-dog-pet-baby"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/4.jpg" alt="cute-cat-kittens-pet"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/5.jpg" alt="cute-baby-kid-child"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/6.jpg" alt="funny-men-explain-joke"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/7.jpg" alt="cute-baby-kid-child"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/8.jpg" alt="explain-men-funny-classic"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/9.jpg" alt="cute-baby-kid-child"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/10.jpg" alt="obama-politics-funny-face"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/11.jpg" alt="gay-men-kiss-sport-funny"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/12.jpg" alt="explain-men-you-tv"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/13.jpg" alt="men-celeb-you"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/14.jpg" alt="matrix-pill-glasses-neo-men"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/15.jpg" alt="got-tv-okay-men"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/16.jpg" alt="tv-space-classic-men"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/17.jpg" alt="asshole-men-russia-politics"></li>
-          <li><img onclick="setImage(this)" src="Media/Square/18.jpg" alt="buzz-toy-explain-classic"></li></ul>
       </div>
     </section>
 

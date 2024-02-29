@@ -18,12 +18,13 @@ window.onload = function () {
   gCanvas.width = window.innerWidth / 2
   gCanvas.height = window.innerHeight - 160
 
-  const temp = new Text('CREATE YOUR OWN MEME', 20, 60, 30)
-  gTexts.push(temp)
-  temp.writeText()
-  temp.makeRectAround()
+  const firstText = new Text('CREATE YOUR OWN MEME', 20, 60, 30)
+  gTexts.push(firstText)
+  firstText.writeText()
+  firstText.makeRectAround()
 
   addListeners()
+  loadImages()
   addImages()
 }
 
@@ -92,11 +93,13 @@ function addDragAndDrop() {
 }
 
 function addImages() {
-  const imgHTML = loadImages()
+
+  const imgHTML = loadMiniGalImages()
   const elUl = document.querySelector('ul.img-selector')
   elUl.innerHTML = imgHTML
   const firstImg = document.querySelectorAll('ul.img-selector img')[1]
   firstImg.onload = () => setImage(firstImg)
+
 }
 
 function setImage(elImg) {
