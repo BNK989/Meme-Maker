@@ -44,3 +44,41 @@ function mainGalleryloadImages(searchTerm) {
   })
   return htmlStr
 }
+
+function createWordCloud() {
+  const allKeywords = []
+
+  gImgs.forEach((img) => {
+    allKeywords.push(...img.keywords)
+  })
+
+  const frqOfWord = createObjMap(allKeywords)
+  const everyKeywordOnce = Object.keys(frqOfWord)
+
+  const everyKeywordAbove = everyKeywordOnce.filter(
+    (word) => frqOfWord[word] > 3
+  )
+  console.log(everyKeywordAbove)
+
+  //creating HTML
+  let htmlStr = ''
+  everyKeywordAbove.forEach((keyword) => {
+    htmlStr += `<a onclick="wordcloudClick(this)" style="font-size:${
+      frqOfWord[keyword] * 0.4
+    }em" href="#">${keyword}</a>`
+  })
+
+  return htmlStr
+}
+
+function createObjMap(arr) {
+  const objMap = {}
+  arr.forEach((str) => {
+    if (objMap[str]) {
+      objMap[str]++
+    } else {
+      objMap[str] = 1
+    }
+  })
+  return objMap
+}

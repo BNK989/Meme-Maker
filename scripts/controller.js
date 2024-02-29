@@ -26,6 +26,7 @@ window.onload = function () {
   addListeners()
   loadImages()
   addImages()
+  loadWordCloud()
 }
 
 function addListeners() {
