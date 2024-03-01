@@ -9,9 +9,8 @@ function loadImages(val) {
   elGalleryUl.innerHTML = imagesHTML
 }
 
-function loadWordCloud(winWidth) {
-  const size = winWidth > 701 ? 0.4 : 0.2
-  const worldCloudHTML = createWordCloud(size)
+function loadWordCloud(maxWords) {
+  const worldCloudHTML = createWordCloud(maxWords)
 
   const elCloud = document.querySelector('.wordclouds')
   elCloud.innerHTML = worldCloudHTML
@@ -29,7 +28,7 @@ function wordcloudClick(el) {
 }
 
 
-// TEMP 
+// Mini gallery scroller 
 let imageContainer = document.querySelector('ul.img-selector');
 let isDragging = false;
 let startPosition = 0;

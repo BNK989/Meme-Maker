@@ -3,7 +3,9 @@
   grid-auto-flow: column;
   column-gap: 1em;
   height: 100%;
+  width: 90%;
   place-content: center;
+  margin-inline: auto;
 }
 
 .form-container {

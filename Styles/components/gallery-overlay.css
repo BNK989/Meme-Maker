@@ -37,6 +37,7 @@
   outline: none;
   border: 2px solid #818181;
 }
+
 .search-input:focus-visible{
     color:white;
 }
@@ -57,9 +58,18 @@
     a:hover{
       color:#d1d1d1;
   }
+
   .activeTerm{
     color:red;
   }
+
+}
+
+.gallery-search .btn{
+  width: fit-content;
+  font-size: 1.2em;
+  padding: 0.2em 0.5em
+  ;
 }
 
 .gallery {

@@ -38,14 +38,14 @@ function mainGalleryloadImages(searchTerm) {
     res = gImgs
   }
   res.forEach((img) => {
-    htmlStr += `<li><img onclick="setImage(this);toggleGallery()" src="Media/Square/${
+    htmlStr += `<li><img onclick="setImage(this);toggleGallery('main-body')" src="Media/Square/${
       img.url
     }" alt="${img.keywords.join('-')}" /></li>`
   })
   return htmlStr
 }
 
-function createWordCloud(size = 0.4) {
+function createWordCloud(maxWords) {
   const allKeywords = []
 
   gImgs.forEach((img) => {
@@ -56,7 +56,7 @@ function createWordCloud(size = 0.4) {
   const everyKeywordOnce = Object.keys(frqOfWord)
 
   const everyKeywordAbove = everyKeywordOnce.filter(
-    (word) => frqOfWord[word] > 3
+    (word) => frqOfWord[word] > maxWords
   )
 
   //creating HTML
