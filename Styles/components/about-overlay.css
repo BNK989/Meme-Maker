@@ -1,0 +1,32 @@
+.about-overlay{
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+    height: max-content;
+
+    img{
+        width: 20vw;
+    }
+    .content{
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+
+    }
+}
+.social h4 {
+    margin: 0 0 .6em 0;
+
+}
+
+.social ul{
+    gap: 2vw;
+    justify-content: space-around;
+    a{
+        color: var(--primary-base);
+        font-size: 2em;
+    }
+    
+}

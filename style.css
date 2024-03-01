@@ -13,6 +13,8 @@
 @import url(Styles/components/drag-and-drop.css);
 @import url(Styles/components/canvas.css);
 @import url(Styles/components/gallery-overlay.css);
+@import url(Styles/components/about-overlay.css);
+@import url(Styles/components/modal.css);
 
 /* Helpers */
 @import url(Styles/basics/helpers.css);

@@ -13,14 +13,14 @@
       <h1>Meme Maker</h1>
       <nav class="hamburger-nav">
         <ul class="flex">
-          <li><a href="#" onclick="toggleGallery()">Image Gallery</a></li>
-          <li><a href="#" onclick="toggleGallery()">Editor</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="#" onclick="toggleGallery('gallery-overlay')">Image Gallery</a></li>
+          <li><a href="#" onclick="toggleGallery('main-body')">Editor</a></li>
+          <li><a href="#" onclick="toggleGallery('about-overlay')">About</a></li>
         </ul>
       </nav>
     </header>
 
-    <section class="gallery-overlay">
+    <section class="gallery-overlay overlay">
       <nav class="gallery-search">
         <div class="searchbar">
           <input
@@ -41,7 +41,24 @@
       </div>
     </section>
 
-    <main class="main-body hide">
+    <section class="about-overlay overlay">
+      <img src="Media/Square/10.jpg" alt="temp image">
+      <div class="content flex">
+        <h2>Hi, I'm Ben,</h2>
+        <p>A Full stack developer that make cool site that are great to share! </p>
+        <div class="social">
+          <h4>Want to develope your own site? fine me here:</h4>
+          <ul class="flex clean-list">
+            <li><a class="fa facebook" href="https://www.facebook.com/BNK989/"></a></li>
+            <li><a class="fa github" href="https://github.com/BNK989"></a></li>
+            <li><a class="fa instagram" href="https://www.instagram.com/bnk989"></a></li>
+            <li><a class="fa whatsapp" href="wa.link/qisfkl"></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <main class="main-body overlay hide">
       <div class="canvas-container">
         <canvas id="main-canvas"></canvas>
         <div class="form-container">
@@ -92,6 +109,7 @@
       </div>
       <nav class="side-nav flex center"></nav>
     </main>
+      <div class="modal hide">downloaded complited</div>
 
     <footer class="main-footer flex center full">
       <h4 class="credit">© Made by BNK</h4>

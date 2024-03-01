@@ -1,0 +1,9 @@
+.modal{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: fit-content;
+    padding: .5em 1em;
+    background-color: black;
+}
+

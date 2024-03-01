@@ -1,12 +1,10 @@
 @media (width <= 700px){
     .main-header{
-        background-color: red;
         padding-inline: .6em;
     } 
     
     .main-header h1{
         font-size: 1.6em;
-        background-color: red;
     }
 
     .main-header nav{
@@ -38,7 +36,6 @@
         grid-auto-flow: row;
         grid-template-columns: 1fr;
         margin: 0;
-
     }
 
     .wordclouds {
@@ -52,5 +49,14 @@
 
     .gallery ul img {
         width: 6em;
+    }
+
+    .about-overlay{
+        grid-auto-flow: row;
+        margin-inline: 1em;
+        grid-template-rows: 1fr 6fr;
+
+        .content{
+        }
     }
 }

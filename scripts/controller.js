@@ -272,6 +272,7 @@ function onSwitchText() {
 function onDownloadImg(elLink) {
   const imgContent = gCanvas.toDataURL('image/jpeg')
   elLink.href = imgContent
+  modal('Meme Downloaded')
 }
 
 function onSave() {
@@ -294,16 +295,12 @@ function _resetCanvas() {
   if (gCurrImg) setImage(gCurrImg)
 }
 
-function toggleGallery() {
-  const elGallery = document.querySelector('section.gallery-overlay').classList
-  const elCanvas = document.querySelector('main.main-body').classList
-  if (!elGallery.contains('hide')) {
-    elGallery.add('hide')
-    elCanvas.remove('hide')
-  } else {
-    elGallery.remove('hide')
-    elCanvas.add('hide')
-  }
+function toggleGallery(className) {
+  const reqContent = document.querySelector(`.${className}`)
+  const allShowingSec = document.querySelectorAll('.overlay')
+
+  allShowingSec.forEach(sec => sec.classList.add('hide'))
+  reqContent.classList.remove('hide')
 }
 
 function scrollMiniGal() {
@@ -312,4 +309,13 @@ function scrollMiniGal() {
     left: 100,
     behavior: 'smooth',
   })
+}
+
+function modal(text){
+  const elModal = document.querySelector('.modal')
+  elModal.innerText = text
+  elModal.classList.remove('hide')
+  setTimeout(()=>{
+    elModal.classList.add('hide')
+  },3500)
 }
