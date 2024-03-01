@@ -1,0 +1,31 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    color-scheme: dark light;
+}
+
+body > *{
+    grid-column: 2;
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+}
+
+ul{
+    padding-inline-start: 0;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}

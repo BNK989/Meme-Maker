@@ -1,0 +1,56 @@
+@media (width <= 700px){
+    .main-header{
+        background-color: red;
+        padding-inline: .6em;
+    } 
+    
+    .main-header h1{
+        font-size: 1.6em;
+        background-color: red;
+    }
+
+    .main-header nav{
+        display: none;
+    }
+
+    .canvas-container {
+        grid-auto-flow: row;
+    }
+
+    ul.img-selector {
+    width: 100dvw;
+    }
+
+    .text-edits * {
+        padding: .6em 0.1em;
+    }
+
+    .add-switch-remove * {
+        width: 3em;
+    }
+
+    .action-btns a {
+        padding: .6em .6em;
+        font-size: 1.2em;
+    }
+
+    .gallery-search {
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        margin: 0;
+
+    }
+
+    .wordclouds {
+        gap: .2em;
+        font-size: 12px;
+    }
+
+    .gallery ul {
+        gap: 0.2em;
+    }
+
+    .gallery ul img {
+        width: 6em;
+    }
+}

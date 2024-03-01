@@ -1,0 +1,21 @@
+/* Setup */
+@import url(/Styles/setup/vars.css);
+@import url(/Styles/fonts.css);
+
+/* Base layout */
+@import url(/Styles/basics/base.css);
+@import url(/Styles/basics/layout.css);
+
+/* Components */
+@import url(/Styles/components/header.css);
+@import url(/Styles/components/content-body.css);
+@import url(/Styles/components/mini-gallery.css);
+@import url(/Styles/components/drag-and-drop.css);
+@import url(/Styles/components/canvas.css);
+@import url(/Styles/components/gallery-overlay.css);
+
+/* Helpers */
+@import url(/Styles/basics/helpers.css);
+
+/* Queries */
+@import url(/Styles/setup/queries.css);

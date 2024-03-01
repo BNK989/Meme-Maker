@@ -1,0 +1,87 @@
+.gallery-overlay {
+  display: grid;
+
+  grid-template-rows: 120px 1fr;
+  height: max-content;
+}
+
+.gallery-search {
+  place-items: center;
+  background-color: rgba(0, 0, 139, 0.178);
+  margin: 15px;
+  border-radius: 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr minmax(200px, 0.4fr);
+  grid-auto-flow: column;
+  gap: 1em;
+}
+
+.gallery-search > * {
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  height: 3em;
+  margin: 1em 0;
+  border-radius: 2em;
+  padding: 1em;
+
+  width: 85%;
+  display: block;
+  margin: auto;
+  font-size: 1.3rem;
+  background-color: inherit;
+  color:#818181;
+  transition: color .4s;
+  outline: none;
+  border: 2px solid #818181;
+}
+.search-input:focus-visible{
+    color:white;
+}
+
+.wordclouds {
+  border-radius: 2em;
+  background-color: transparent;
+  color: white;
+  align-items: center;
+  gap: 1.5em;
+  justify-content: center;
+
+    a{
+        color:#818181;
+        text-transform: capitalize;
+        transition: color .4s;
+    }
+    a:hover{
+      color:#d1d1d1;
+  }
+  .activeTerm{
+    color:red;
+  }
+}
+
+.gallery {
+  width: 80%;
+  place-self: center;
+  ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+
+    list-style-type: none;
+
+    img {
+      width: 16em;
+      border-radius: 10px;
+      transition: transform .5s, box-shadow .5s;
+      /* TODO fix overlapin on hover */
+      
+    }
+    img:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 16px 6px white;
+      }
+  }
+}

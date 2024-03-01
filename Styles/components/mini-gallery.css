@@ -1,0 +1,21 @@
+ul.img-selector {
+  position: relative;
+  width: 40vw;
+
+  list-style-type: none;
+  justify-content: flex-start;
+  gap: 0.6em;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 0;
+
+  img:not(.drop-area img) {
+    height: clamp(200px, 5em, 30dvh);
+    border-radius: 0.6em;
+    box-shadow: 3px 4px 4px 1px #000000a1;
+  }
+
+  img:active {
+    box-shadow: inset 3px 4px 4px 1px #000000a1;
+  }
+}

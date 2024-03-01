@@ -1,0 +1,12 @@
+:root {
+    /* colors  */
+    --primary-1: #fff;
+    --primary-base: #F8F8F8;
+    --primary-text: #4F4E4E;
+    --primary--1: #000;
+    --accent: #58c93a;
+  
+    /* layout vars */
+    --card-layout-margin: 40px;
+    --card-layout-outer-margin: 80px;
+  }
