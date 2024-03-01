@@ -9,8 +9,9 @@ function loadImages(val) {
   elGalleryUl.innerHTML = imagesHTML
 }
 
-function loadWordCloud() {
-  const worldCloudHTML = createWordCloud()
+function loadWordCloud(winWidth) {
+  const size = winWidth > 701 ? 0.4 : 0.2
+  const worldCloudHTML = createWordCloud(size)
 
   const elCloud = document.querySelector('.wordclouds')
   elCloud.innerHTML = worldCloudHTML

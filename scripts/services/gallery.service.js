@@ -45,7 +45,7 @@ function mainGalleryloadImages(searchTerm) {
   return htmlStr
 }
 
-function createWordCloud() {
+function createWordCloud(size = 0.4) {
   const allKeywords = []
 
   gImgs.forEach((img) => {
@@ -58,7 +58,7 @@ function createWordCloud() {
   const everyKeywordAbove = everyKeywordOnce.filter(
     (word) => frqOfWord[word] > 3
   )
-  
+
   //creating HTML
   let htmlStr = ''
   everyKeywordAbove.forEach((keyword) => {

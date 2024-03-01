@@ -26,7 +26,7 @@ window.onload = function () {
   addListeners()
   loadImages()
   addImages()
-  loadWordCloud()
+  loadWordCloud(window.innerWidth)
   resizeCanvas()
 }
 
@@ -44,6 +44,7 @@ function addListeners() {
 }
 
 function resizeCanvas(ratio){
+  loadWordCloud(window.innerWidth)
   if(window.innerWidth < 701){//mobile
     if(!ratio){
     gCanvas.width = window.innerWidth / 1.2
