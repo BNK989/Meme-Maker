@@ -27,6 +27,19 @@ function wordcloudClick(el) {
   
 }
 
+function wordCloudControl(el){
+  if (el.innerText === 'Show More'){
+    console.log(el.innerText)
+    el.innerText = 'Show Less'
+    loadWordCloud(0)
+    return
+  } else {
+    el.innerText = 'Show More'
+    loadWordCloud(3)
+    return
+  }
+}
+
 
 // Mini gallery scroller 
 let imageContainer = document.querySelector('ul.img-selector');

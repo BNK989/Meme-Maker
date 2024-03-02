@@ -12,6 +12,7 @@
     <header class="main-header flex full">
       <h1>Meme Maker</h1>
       <nav class="hamburger-nav">
+        <button class="mobile-menu" onclick="openMenu()">Menu</button>
         <ul class="flex">
           <li><a href="#" onclick="toggleGallery('gallery-overlay')">Image Gallery</a></li>
           <li><a href="#" onclick="toggleGallery('main-body')">Editor</a></li>
@@ -33,7 +34,7 @@
         </div>
         <div class="wordclouds flex">
         </div>
-        <button class="btn" onclick="loadWordCloud(0)">Show More</button>
+        <button class="btn" onclick="wordCloudControl(this)">Show More</button>
       </nav>
 
       <div class="gallery">

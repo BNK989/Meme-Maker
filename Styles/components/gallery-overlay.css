@@ -1,12 +1,9 @@
 .gallery-overlay {
-  display: grid;
-
-  grid-template-rows: 120px 1fr;
   height: max-content;
 }
 
 .gallery-search {
-  place-items: center;
+  place-items: start center;
   background-color: rgba(0, 0, 139, 0.178);
   margin: 15px;
   border-radius: 2em;
@@ -17,6 +14,7 @@
 }
 
 .gallery-search > * {
+  margin-top: 1em;
   width: 100%;
 }
 
@@ -44,11 +42,13 @@
 
 .wordclouds {
   border-radius: 2em;
+  flex-wrap: wrap;
   background-color: transparent;
   color: white;
   align-items: center;
   gap: 1.5em;
   justify-content: center;
+  padding: .8em;
 
     a{
         color:#818181;
@@ -68,13 +68,13 @@
 .gallery-search .btn{
   width: fit-content;
   font-size: 1.2em;
-  padding: 0.2em 0.5em
-  ;
+  padding: 0.2em 0.5em;
 }
 
 .gallery {
   width: 80%;
-  place-self: center;
+  margin: 0 auto;
+
   ul {
     flex-wrap: wrap;
     justify-content: center;

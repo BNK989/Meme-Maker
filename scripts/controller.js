@@ -26,7 +26,7 @@ window.onload = function () {
   addListeners()
   loadImages()
   addImages()
-  loadWordCloud(3)
+  loadWordCloud(2)
   resizeCanvas()
 }
 
@@ -126,6 +126,15 @@ function setImage(elImg) {
 
   gCtx.drawImage(gCurrImg, 0, 0, gCanvas.width, gCanvas.height)
   gTexts.forEach((text) => text.writeText())
+}
+
+function openMenu(){
+  const nav = document.querySelector('.hamburger-nav')
+  nav.classList.toggle('open')
+  const navUl = nav.querySelector('ul')
+  navUl.addEventListener('click',()=>{
+    nav.classList.remove('open')
+  })
 }
 
 const mouseMove = (e) => {

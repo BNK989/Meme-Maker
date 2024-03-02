@@ -62,9 +62,13 @@ function createWordCloud(maxWords) {
   //creating HTML
   let htmlStr = ''
   everyKeywordAbove.forEach((keyword) => {
-    htmlStr += `<a onclick="wordcloudClick(this)" style="font-size:${
-      frqOfWord[keyword] * 0.4
-    }em" href="#">${keyword}</a>`
+    let fSize = frqOfWord[keyword] * 0.3 
+    if ( fSize >= 3){
+      fSize = 3
+    } else if (fSize <= 0.6){
+      fSize = 0.6
+    }
+    htmlStr += `<a onclick="wordcloudClick(this)" style="font-size:${fSize}em" href="#">${keyword}</a>`
   })
 
   return htmlStr

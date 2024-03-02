@@ -1,3 +1,8 @@
+@media (width >= 700px){
+    .mobile-menu{
+        display: none;
+    }
+}
 @media (width <= 700px){
     .main-header{
         padding-inline: .6em;
@@ -7,8 +12,21 @@
         font-size: 1.6em;
     }
 
-    .main-header nav{
-        display: none;
+    .main-header nav ul{
+        transform: translateX(100%);
+        flex-direction: column;
+        background-color: rgb(80, 80, 80);
+        position: absolute;
+        right: 0;
+        transition: transform .8s;
+        
+        li{
+            height: 8%;
+        }
+    }
+
+    nav.open ul{
+        transform: translateX(0);
     }
 
     .canvas-container {
