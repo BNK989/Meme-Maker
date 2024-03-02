@@ -159,10 +159,9 @@ const mouseMove = (e) => {
       return
     } else if (idx === gTexts.length - 1) {
       RerenderCanvas(false)
-      // _resetCanvas()
-      // gTexts[idx].writeText()
       gCanvas.style.cursor = 'initial'
       gCanvas.onmousedown = null
+      closeEditModal()
     }
   }
 }
@@ -173,7 +172,11 @@ const onDown = (e) => {
   gGrabOffset.y = pos.y - gTexts[gCurrTextIdx].pos.y
 
   e.preventDefault()
+  if(!isMouseOnRect(pos.x, pos.y, gTexts[gCurrTextIdx])){
+    RerenderCanvas(false)
+  }
   gIsClicking = true
+
 }
 
 function move({ x, y }, text) {
@@ -183,12 +186,26 @@ function move({ x, y }, text) {
   text.pos.y = y - gGrabOffset.y
   text.writeText()
   text.makeRectAround()
+  openEditModal()
+
 }
 
 const onUp = (e) => {
   e.preventDefault()
   gIsClicking = false
   gExpandArea = 3
+}
+
+function openEditModal() {
+	const elModal = document.querySelector('.quick-edit')
+
+	elModal.style.opacity = 1
+	elModal.style.top = gTexts[gCurrTextIdx].pos.y -60 + 'px'
+	elModal.style.left = gTexts[gCurrTextIdx].pos.x -10 + 'px'
+}
+
+function closeEditModal() {
+	document.querySelector('.quick-edit').style.opacity = 0
 }
 
 function onResize({ x }, text) {

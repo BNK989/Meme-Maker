@@ -62,6 +62,26 @@
     <main class="main-body overlay hide">
       <div class="canvas-container">
         <canvas id="main-canvas"></canvas>
+        <div class="quick-edit">
+          <input
+          name="text-field"
+          id="text-field"
+          type="text"
+          oninput="onTextInputChange(this)"
+        />
+          <input type="button" onclick="fontResize(1)" value="font+" />
+          <input type="button" onclick="fontResize(-1)" value="font-" />
+          <select class="select-font-family" onchange="onSetFontFamily(this.value)">
+            <option value="impact">Impact</option>
+            <option value="arial">Arial</option>
+            <option value="lucida sans">Lucida Sans</option>
+            <option value="verdana">Verdana</option>
+            <option value="times new roman">Times New Roman</option>
+            <option value="georgia">Georgia</option>
+          </select>
+          <input type="color" oninput="onSetTextColor(this.value)">
+          <input type="color" oninput="onSetStrokeColor(this.value)">
+        </div>
         <div class="form-container">
           <div class="text-edits">
             <div class="add-switch-remove">
@@ -110,7 +130,8 @@
       </div>
       <nav class="side-nav flex center"></nav>
     </main>
-      <div class="modal hide">downloaded complited</div>
+      <div class="modal hide">downloaded complied</div>
+      
 
     <footer class="main-footer flex center full">
       <h4 class="credit">© Made by BNK</h4>

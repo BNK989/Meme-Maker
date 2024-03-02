@@ -16,7 +16,7 @@
         transform: translateX(100%);
         flex-direction: column;
         background-color: rgb(80, 80, 80);
-        position: absolute;
+        /* position: absolute; */
         right: 0;
         transition: transform .8s;
         
@@ -74,7 +74,9 @@
         margin-inline: 1em;
         grid-template-rows: 1fr 6fr;
 
-        .content{
-        }
+    }
+
+    .quick-edit{
+        display: none;
     }
 }
