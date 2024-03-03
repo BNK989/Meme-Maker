@@ -1,32 +1,58 @@
 @font-face {
-    font-family: fa;
-    src: url(fonts/fa/fa-brands-400.ttf);
-  }
-  
-  .fa {
-    font-family: fa;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .fa.facebook::after {
-    content: '\f39e';
-  }
+  font-family: fa;
+  src: url(fonts/fa/fa-brands-400.ttf);
+}
 
-  .fa.twitter::after {
-    content: '\f099';
-  }
+@font-face {
+  font-family: fa-reg;
+  src: url(fonts/fa/fa-regular-400.ttf);
+}
 
-  .fa.github::after {
-    content: '\f09b';
-  }
+@font-face {
+  font-family: fa-solid;
+  src: url(fonts/fa/fa-solid-900.ttf);
+}
 
-  .fa.whatsapp::after {
-    content: '\f232';
-  }
-  
-  .fa.instagram::after {
-    content: '\f16d';
-  }
+.fa {
+  font-family: fa;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-reg{
+  font-family: fa-reg;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa.facebook::after {
+  content: '\f39e';
+}
+
+.fa.twitter::after {
+  content: '\f099';
+}
+
+.fa.github::after {
+  content: '\f09b';
+}
+
+.fa.whatsapp::after {
+  content: '\f232';
+}
+
+.fa.instagram::after {
+  content: '\f16d';
+}
+
+.fa.brush::after {
+  content: '\f55d';
+}
+
+.fa.fill::after {
+  content: '\f575';
+}

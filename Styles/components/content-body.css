@@ -10,6 +10,9 @@
 
 .form-container {
   margin: 20px 0;
+  padding: 1em 2em;
+  background-image: var(--linear-bright);
+  border-radius: 2em;
 }
 
 #img-view {

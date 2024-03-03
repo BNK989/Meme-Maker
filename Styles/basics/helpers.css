@@ -6,13 +6,21 @@
   .flex.space-between {
     justify-content: space-between;
   }
+
+  .flex.justify-center {
+    justify-content: center;
+  }
   
   .flex.align-center {
     align-items: center;
   }
 
+  .flex.wrap{
+    flex-wrap: wrap;
+  }
+
   .btn{
-    padding: 1em 2em;
+    padding: 1em;
     font-size: 1.6em;
     color: white;
     background-color: black;

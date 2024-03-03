@@ -4,7 +4,13 @@
     --primary-base: #F8F8F8;
     --primary-text: #4F4E4E;
     --primary--1: #000;
-    --accent: #58c93a;
+    --accent: hsl(107, 57%, 50%);
+    --accent-dark: hsl(107, 57%, 25%);
+    --accent-light: hsl(107, 57%, 75%);
+    --linear-dark: linear-gradient(to right, #313131 , #333333);
+    --linear-bright: linear-gradient(to right, #333333 , #F8F8F8,#333333);
+    --text-color: #000;
+
   
     /* layout vars */
     --card-layout-margin: 40px;

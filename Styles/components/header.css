@@ -1,7 +1,7 @@
 .main-header{
     width: 100%;
-    background-image: linear-gradient(to right, #313131 , #333333);
-    box-shadow: 0px 3px 10px 0px #000000a8;
+    background-image: var(--linear-dark);
+    box-shadow: 0px 3px 10px 0px var(--primary--1);
     justify-content: space-between;
     padding-inline: clamp(2em, 6em, 10em);
     margin-block-end: 20px;
@@ -15,7 +15,7 @@
     text-transform: uppercase;
     color: whitesmoke;
     -webkit-text-stroke-width: .05em;
-    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-color: var(--primary--1);
     }
 
     ul {
@@ -26,18 +26,18 @@
 
     li {
         height: 100%;
-        border-inline-end: 1px solid #00000070;
+        border-inline-end: 1px solid var((--primary--1));
     }
 
     li:nth-child(1) {
-        border-inline-start: 1px solid #00000070;
+        border-inline-start: 1px solid var((--primary--1));
     }
 
     a {
         text-decoration: none;
         font-family: Impact, 'Arial Narrow Bold', sans-serif;
         font-size: 1.5em;
-        color:whitesmoke;
+        color: var(--primary-base);
         display: block;
         height: 100%;
         display: flex;

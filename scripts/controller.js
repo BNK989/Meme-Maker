@@ -137,7 +137,7 @@ function openMenu(){
   })
 }
 
-const mouseMove = (e) => {
+function mouseMove(e) {
   e.preventDefault()
   const pos = getEventPos(e)
   for (let idx = 0; idx < gTexts.length; idx++) {
@@ -166,7 +166,7 @@ const mouseMove = (e) => {
   }
 }
 
-const onDown = (e) => {
+function onDown(e) {
   const pos = getEventPos(e)
   gGrabOffset.x = pos.x - gTexts[gCurrTextIdx].pos.x
   gGrabOffset.y = pos.y - gTexts[gCurrTextIdx].pos.y
@@ -181,7 +181,7 @@ const onDown = (e) => {
 
 function move({ x, y }, text) {
   gCanvas.style.cursor = 'grabbing'
-  _resetCanvas()
+  resetCanvas()
   text.pos.x = x - gGrabOffset.x
   text.pos.y = y - gGrabOffset.y
   text.writeText()
@@ -190,7 +190,7 @@ function move({ x, y }, text) {
 
 }
 
-const onUp = (e) => {
+function onUp(e) {
   e.preventDefault()
   gIsClicking = false
   gExpandArea = 3
@@ -227,18 +227,22 @@ function onSetFontFamily(fontFam) {
   RerenderCanvas(true)
 }
 
-function onSetTextColor(color) {
-  gTexts[gCurrTextIdx].fillStyle = color
+function onSetTextColor(el) {
+  gTexts[gCurrTextIdx].fillStyle = el.value
   RerenderCanvas(true)
+
+  document.querySelector('.text-color div').style.backgroundColor = el.value
 }
 
 function onSetStrokeColor(color) {
   gTexts[gCurrTextIdx].strokeStyle = color
   RerenderCanvas(true)
+
+  document.querySelector('.stroke-color div').style.borderColor = color
 }
 
 function RerenderCanvas(withRect = false) {
-  _resetCanvas()
+  resetCanvas()
   if (!gCurrTextIdx) return
   const text = gTexts[gCurrTextIdx]
   text.writeText()
@@ -251,7 +255,7 @@ function onImgInput(e) {
 
 function renderImg(img) {
   gCurrImg = img
-  _resetCanvas()
+  resetCanvas()
 }
 
 function onTextSelect(idx) {
@@ -278,7 +282,7 @@ function onAddText() {
 function onRemoveText() {
   if (gTexts.length === 1) return
   gTexts.splice(gCurrTextIdx, 1)
-  _resetCanvas()
+  resetCanvas()
   document.getElementById('text-field').value = ''
 }
 
@@ -315,7 +319,7 @@ function onLoadSavedMeme() {
 }
 
 // ===== local functions ====== //
-function _resetCanvas() {
+function resetCanvas() {
   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
   if (gCurrImg) setImage(gCurrImg)
 }
