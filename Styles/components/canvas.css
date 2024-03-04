@@ -24,6 +24,7 @@
     font-size: 1.6em;
   }
 }
+
 .add-switch-remove{
   grid-area: 1/1/1/-1;
   display: flex;
@@ -44,8 +45,25 @@
   justify-content: space-around;
 
   .btn:hover{
-    color: var(--accent);
+    color: var(--primary--1);
   }
+}
+
+.action-btns > .btn {
+  box-shadow: 1px 2px 3px 0px #ceedcf70;
+  transition: color 0.4s;
+}
+
+.action-btns > .btn:active {
+  box-shadow: inset 1px 2px 3px 0px #ceedcf70;
+}
+
+.action-btns > .btn:nth-child(2n){
+  background-color: var(--accent-dark);
+}
+
+.action-btns > .btn:nth-child(odd){
+  background-color: var(--accent-darker);
 }
 
 .text-color div,

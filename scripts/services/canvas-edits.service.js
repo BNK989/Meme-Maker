@@ -102,7 +102,6 @@ function loadImageFromInput(e) {
     e = e.dataTransfer.files
     reader.onload = (e) => {
       const img = new Image()
-      console.log(e)
       img.src = e.result
       img.onload = () => renderImg(img)
     }

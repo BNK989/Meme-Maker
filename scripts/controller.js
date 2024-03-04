@@ -11,6 +11,7 @@ let gExpandArea = 3
 //const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 let gCurrImg
+let gCurrImgSrc
 
 window.onload = function () {
   gCanvas = document.getElementById('main-canvas')
@@ -39,28 +40,42 @@ function addListeners() {
   gCanvas.onmouseup = onUp
   gCanvas.ontouchend = onUp
 
-  window.addEventListener('resize', resizeCanvas)
+  //window.addEventListener('resize', resizeCanvas)
   setTimeout(addDragAndDrop, 99)
 }
 
-function resizeCanvas(ratio){
-  if(window.innerWidth < 701){//mobile
-    if(!ratio){
-    gCanvas.width = window.innerWidth / 1.2
-    gCanvas.height = window.innerHeight - 200
+function resizeCanvas(ratio = null) {
+  if(typeof ratio === 'object') ratio = 0
+  if (window.innerWidth < 701) {
+    //mobile
+    if (!ratio) {
+      gCanvas.width = window.innerWidth / 1.2
+      gCanvas.height = window.innerHeight - 200
     } else {
-    gCanvas.width = window.innerWidth / 1.2
-    gCanvas.height = gCanvas.width / ratio
-    }//desktop
+      gCanvas.width = window.innerWidth / 1.2
+      gCanvas.height = gCanvas.width / ratio
+    } //desktop
   } else {
-    if(!ratio){
-    gCanvas.width = window.innerWidth / 2.2
-    gCanvas.height = window.innerHeight - 200
-  } else {
-    gCanvas.width = window.innerWidth / 2.8
-    gCanvas.height = gCanvas.width / ratio
+    if (!ratio) {
+      gCanvas.width = window.innerWidth / 2.2
+      gCanvas.height = window.innerHeight - 200
+    } else {
+      gCanvas.width = window.innerWidth / 2.8
+      gCanvas.height = gCanvas.width / ratio
+    }
   }
- }
+  //redrawContent(gCtx)
+}
+
+function redrawContent(ctx){
+  const temp = new Image()
+  temp.src = gCurrImg.src
+  temp.onload = function () {
+    const aspectRatio = temp.width / temp.height
+    ctx.drawImage(temp, 0, 0, gCanvas.width, gCanvas.height)
+    gTexts.forEach((text) => text.writeText())
+  }
+
 }
 
 function addDragAndDrop() {
@@ -121,6 +136,7 @@ function addImages() {
 
 function setImage(elImg) {
   gCurrImg = elImg
+  gCurrImgSrc = elImg.src
   const aspectRatio = gCurrImg.width / gCurrImg.height
   resizeCanvas(aspectRatio)
 
@@ -128,11 +144,11 @@ function setImage(elImg) {
   gTexts.forEach((text) => text.writeText())
 }
 
-function openMenu(){
+function openMenu() {
   const nav = document.querySelector('.hamburger-nav')
   nav.classList.toggle('open')
   const navUl = nav.querySelector('ul')
-  navUl.addEventListener('click',()=>{
+  navUl.addEventListener('click', () => {
     nav.classList.remove('open')
   })
 }
@@ -172,11 +188,10 @@ function onDown(e) {
   gGrabOffset.y = pos.y - gTexts[gCurrTextIdx].pos.y
 
   e.preventDefault()
-  if(!isMouseOnRect(pos.x, pos.y, gTexts[gCurrTextIdx])){
+  if (!isMouseOnRect(pos.x, pos.y, gTexts[gCurrTextIdx])) {
     RerenderCanvas(false)
   }
   gIsClicking = true
-
 }
 
 function move({ x, y }, text) {
@@ -187,7 +202,6 @@ function move({ x, y }, text) {
   text.writeText()
   text.makeRectAround()
   openEditModal()
-
 }
 
 function onUp(e) {
@@ -197,15 +211,15 @@ function onUp(e) {
 }
 
 function openEditModal() {
-	const elModal = document.querySelector('.quick-edit')
+  const elModal = document.querySelector('.quick-edit')
 
-	elModal.style.opacity = 1
-	elModal.style.top = gTexts[gCurrTextIdx].pos.y -60 + 'px'
-	elModal.style.left = gTexts[gCurrTextIdx].pos.x -10 + 'px'
+  elModal.style.opacity = 1
+  elModal.style.top = gTexts[gCurrTextIdx].pos.y - 60  + 'px'
+  elModal.style.left = gTexts[gCurrTextIdx].pos.x - 10 + 'px'
 }
 
 function closeEditModal() {
-	document.querySelector('.quick-edit').style.opacity = 0
+  document.querySelector('.quick-edit').style.opacity = 0
 }
 
 function onResize({ x }, text) {
@@ -328,7 +342,7 @@ function toggleGallery(className) {
   const reqContent = document.querySelector(`.${className}`)
   const allShowingSec = document.querySelectorAll('.overlay')
 
-  allShowingSec.forEach(sec => sec.classList.add('hide'))
+  allShowingSec.forEach((sec) => sec.classList.add('hide'))
   reqContent.classList.remove('hide')
 }
 
@@ -340,11 +354,11 @@ function scrollMiniGal() {
   })
 }
 
-function modal(text){
+function modal(text) {
   const elModal = document.querySelector('.modal')
   elModal.innerText = text
   elModal.classList.remove('hide')
-  setTimeout(()=>{
+  setTimeout(() => {
     elModal.classList.add('hide')
-  },3500)
+  }, 3500)
 }

@@ -5,10 +5,11 @@
     --primary-text: #4F4E4E;
     --primary--1: #000;
     --accent: hsl(107, 57%, 50%);
-    --accent-dark: hsl(107, 57%, 25%);
+    --accent-dark: hsl(107, 57%, 30%);
+    --accent-darker: hsl(107, 57%, 20%);
     --accent-light: hsl(107, 57%, 75%);
     --linear-dark: linear-gradient(to right, #313131 , #333333);
-    --linear-bright: linear-gradient(to right, #333333 , #F8F8F8,#333333);
+    --linear-bright: linear-gradient(to right, #3333333a , #F8F8F83a,#3333333a);
     --text-color: #000;
 
   
